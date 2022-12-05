@@ -1,12 +1,14 @@
 {
-  "name": "advent-of-code",
+  "name": "advent-of-code-2022",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "ts-node src/$DAY/index.ts --silent",
+    "dev": "nodemon src/$DAY/index.ts"
   },
-  "author": "",
+  "author": "Janne Laakkonen",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^29.2.3",

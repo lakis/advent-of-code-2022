@@ -2,4 +2,12 @@
 
 Run code:
 
-`npx nodemon src/{day}/index.ts`
+`npm run start --day=02 --s`
+
+To dev:
+
+`npm run dev --day=02 --s`
+
+Run tests:
+
+`npm run test`
