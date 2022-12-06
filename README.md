@@ -2,7 +2,7 @@
 
 Run code:
 
-`npx ts-node src/{day}/index.ts`
+`npx ts-no src/{day}/index.ts`
 
 To dev:
 
