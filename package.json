@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "start": "ts-node src/$DAY/index.ts --silent",
-    "dev": "nodemon src/$DAY/index.ts"
+    "test": "jest"
   },
   "author": "Janne Laakkonen",
   "license": "ISC",

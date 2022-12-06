@@ -2,11 +2,11 @@
 
 Run code:
 
-`npm run start --day=02 --s`
+`npx ts-node src/{day}/index.ts`
 
 To dev:
 
-`npm run dev --day=02 --s`
+`npx nodemon src/{day}/index.ts`
 
 Run tests:
 
