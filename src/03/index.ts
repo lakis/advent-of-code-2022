@@ -85,25 +85,7 @@ export function getSameGroupLetter(groups: string[][]): string {
   return letter;
 }
 
-export function calculatePriorities(input: string): number {
-  input = fs.readFileSync(input, "utf8");
-
-  let sum = 0;
-
-  input.split("\n").forEach((rucksack) => {
-    const firstCompartment = rucksack.slice(0, rucksack.length / 2);
-    const secondCompartment = rucksack.replace(firstCompartment, "");
-    const letter = getDuplicate(
-      firstCompartment.split(""),
-      secondCompartment.split("")
-    );
-    sum += priorities.indexOf(letter) + 1;
-  });
-
-  return sum;
-}
-
-export function calculateGroupPriorities(input: string): number {
+export function solver(input: string, part2?: boolean): number {
   input = fs.readFileSync(input, "utf8");
 
   let sum = 0;
@@ -111,14 +93,24 @@ export function calculateGroupPriorities(input: string): number {
   let count = 0;
 
   input.split("\n").forEach((rucksack) => {
-    count++;
+    if (part2) {
+      count++;
 
-    group.push(rucksack.split(""));
+      group.push(rucksack.split(""));
 
-    if (count == 3) {
-      const letter = getSameGroupLetter(group);
-      count = 0;
-      group = [];
+      if (count == 3) {
+        const letter = getSameGroupLetter(group);
+        count = 0;
+        group = [];
+        sum += priorities.indexOf(letter) + 1;
+      }
+    } else {
+      const firstCompartment = rucksack.slice(0, rucksack.length / 2);
+      const secondCompartment = rucksack.replace(firstCompartment, "");
+      const letter = getDuplicate(
+        firstCompartment.split(""),
+        secondCompartment.split("")
+      );
       sum += priorities.indexOf(letter) + 1;
     }
   });
@@ -126,14 +118,10 @@ export function calculateGroupPriorities(input: string): number {
   return sum;
 }
 
-let r = calculatePriorities(__dirname + "/input.txt");
-
 console.time("runtime");
-console.log(r);
+console.log(solver(__dirname + "/input.txt"));
 console.timeEnd("runtime");
 
-r = calculateGroupPriorities(__dirname + "/input.txt");
-
 console.time("runtime");
-console.log(r);
+console.log(solver(__dirname + "/input.txt", true));
 console.timeEnd("runtime");

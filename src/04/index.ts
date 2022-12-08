@@ -45,40 +45,25 @@ function overlaps(first: string[], second: string[]): number {
   return 0;
 }
 
-export function calculatePairs(input: string): number {
+export function solver(input: string, part2?: boolean): number {
   input = fs.readFileSync(input, "utf8");
 
   let sum = 0;
 
   input.split("\n").forEach((pair, idx) => {
     const [first, second] = pair.split(",");
-    const check = contains(first.split("-"), second.split("-"));
+    const check = part2
+      ? overlaps(first.split("-"), second.split("-"))
+      : contains(first.split("-"), second.split("-"));
     sum += check;
   });
   return sum;
 }
-
-export function calculatePairsOverlaps(input: string): number {
-  input = fs.readFileSync(input, "utf8");
-
-  let sum = 0;
-
-  input.split("\n").forEach((pair) => {
-    const [first, second] = pair.split(",");
-    const check = overlaps(first.split("-"), second.split("-"));
-    sum += check;
-  });
-  return sum;
-}
-
-let r = calculatePairs(__dirname + "/input.test.txt");
 
 console.time("runtime");
-console.log(r);
+console.log(solver(__dirname + "/input.txt"));
 console.timeEnd("runtime");
 
-r = calculatePairsOverlaps(__dirname + "/input.test.txt");
-
 console.time("runtime");
-console.log(r);
+console.log(solver(__dirname + "/input.txt", true));
 console.timeEnd("runtime");

@@ -47,7 +47,7 @@ const counterLoss: Record<string, string> = {
 // Y = draw
 // Z = win
 
-function battle(home: string, away: string, part2: boolean): number {
+function battle(home: string, away: string, part2?: boolean): number {
   if (part2) {
     if (away == "Y") away = home;
     else if (away == "Z") away = counterWin[home];
@@ -59,40 +59,23 @@ function battle(home: string, away: string, part2: boolean): number {
   return points[hit[away]];
 }
 
-export function calculatePoints(input: string) {
+export function solver(input: string, part2?: boolean) {
   input = fs.readFileSync(input, "utf8");
   let result = 0;
   input.split("\n").forEach((round) => {
     if (round.length == 3) {
       const [home, away] = round.split(" ");
-      const battleResult = battle(home, away, false);
+      const battleResult = battle(home, away, part2);
       result = result + battleResult;
     }
   });
   return result;
 }
-
-export function calculatePointsPart2(input: string) {
-  input = fs.readFileSync(input, "utf8");
-  let result = 0;
-  input.split("\n").forEach((round) => {
-    if (round.length == 3) {
-      const [home, away] = round.split(" ");
-      const battleResult = battle(home, away, true);
-      result = result + battleResult;
-    }
-  });
-  return result;
-}
-
-let r = calculatePoints(__dirname + "/input.txt");
 
 console.time("runtime");
-console.log(r);
+console.log(solver(__dirname + "/input.txt"));
 console.timeEnd("runtime");
 
-r = calculatePointsPart2(__dirname + "/input.txt");
-
 console.time("runtime");
-console.log(r);
+console.log(solver(__dirname + "/input.txt", true));
 console.timeEnd("runtime");

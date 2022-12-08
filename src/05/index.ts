@@ -54,7 +54,7 @@ function makeMoves(stacks: string[][], moves: string, part2?: boolean): string {
   return message;
 }
 
-export function getMessage(input: string, part2?: boolean): string {
+export function solver(input: string, part2?: boolean): string {
   input = fs.readFileSync(input, "utf8");
 
   const [crates, moves] = input.split("\n\n");
@@ -64,14 +64,10 @@ export function getMessage(input: string, part2?: boolean): string {
   return message;
 }
 
-let r = getMessage(__dirname + "/input.txt", false);
-
 console.time("runtime");
-console.log(r);
+console.log(solver(__dirname + "/input.txt", false));
 console.timeEnd("runtime");
 
-r = getMessage(__dirname + "/input.txt", true);
-
 console.time("runtime");
-console.log(r);
+console.log(solver(__dirname + "/input.txt", true));
 console.timeEnd("runtime");
